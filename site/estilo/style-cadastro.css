@@ -121,6 +121,7 @@ body * {
     }
     .main-login{
         flex-direction: column;
+        height: 100%;
      }
      .left-login > h1{
          display: none;
