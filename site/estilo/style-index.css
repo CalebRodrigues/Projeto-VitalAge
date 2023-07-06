@@ -8,6 +8,7 @@ body{
     margin: 0 auto;
     padding: 15px;
     overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 header{
