@@ -29,5 +29,56 @@
             </div>
         </div>
     </div>
+
+    <!-- Importando as bibliotecas do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+
+    <!-- Configurando o Firebase e inicializando o app -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
+        import { getAuth, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBb7OoZjFjfJlbOQvtpPH7hGDpxY5giDNI",
+            authDomain: "vitalage-site.firebaseapp.com",
+            projectId: "vitalage-site",
+            storageBucket: "vitalage-site.appspot.com",
+            messagingSenderId: "9825977049",
+            appId: "1:9825977049:web:14cc2655ba499336acb4c8"
+        };
+
+        // Inicializando o app do Firebase
+        const app = initializeApp(firebaseConfig);
+
+        // Referência para o serviço de autenticação
+        const auth = getAuth();
+
+        // Função para realizar o login
+        function login() {
+            const email = document.querySelector('input[name="usuario"]').value;
+            const password = document.querySelector('input[name="senha"]').value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Login realizado com sucesso
+                    const user = userCredential.user;
+                    console.log("Login realizado com sucesso: " + user.uid);
+                    // Redirecionar para a página após o login
+                    window.location.href = "./home.html";
+                })
+                .catch((error) => {
+                    // Ocorreu um erro no login
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log("Erro no login: " + errorMessage);
+                });
+        }
+
+        // Adicionando o evento de clique ao botão de login
+        const loginButton = document.querySelector('.btn-login');
+        loginButton.addEventListener('click', login);
+    </script>
 </body>
 </html>
