@@ -18,8 +18,55 @@
     </header>
 
     <main>
-
+        <button id="logout-button">Logout</button>
     </main>
- 
+
+    <!-- Importando as bibliotecas do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyBb7OoZjFjfJlbOQvtpPH7hGDpxY5giDNI",
+            authDomain: "vitalage-site.firebaseapp.com",
+            projectId: "vitalage-site",
+            storageBucket: "vitalage-site.appspot.com",
+            messagingSenderId: "9825977049",
+            appId: "1:9825977049:web:14cc2655ba499336acb4c8"
+        };
+
+        // Inicializando o app do Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Referência para o serviço de autenticação
+        var auth = firebase.auth();
+
+        // Verificar o estado de autenticação do usuário
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // O usuário está autenticado
+                // Adicionar evento de clique ao botão de logout
+                document.getElementById('logout-button').addEventListener('click', function() {
+                    // Realizar logout (deslogar)
+                    firebase.auth().signOut()
+                        .then(function() {
+                            // Logout bem-sucedido
+                            console.log('Logout realizado com sucesso!');
+                            // Redirecionar de volta para a página de login (ou outra página de sua escolha)
+                            window.location.href = './login.html';
+                        })
+                        .catch(function(error) {
+                            // Tratar erros em caso de falha no logout
+                            console.error('Erro ao realizar logout:', error);
+                        });
+                });
+            } else {
+                // O usuário não está autenticado.
+                // Aqui você pode redirecionar para a página de login ou executar outras ações, se necessário.
+                console.log('Usuário não autenticado. Redirecionando para a página de login...');
+                window.location.href = './login.html';
+            }
+        });
+    </script>
 </body>
 </html>

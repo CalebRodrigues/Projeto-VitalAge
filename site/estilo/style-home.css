@@ -103,9 +103,7 @@ li > a{
    width: 32px;
 }
 
-button{
-    display: none;
-}
+
 
 aside{
     margin-bottom: 130px;
@@ -192,26 +190,6 @@ aside{
         display: block;
     }
     
-    button{
-        display: block;
-        border: 2px solid #0d46af;
-        padding: 10px 40px;
-        border-radius: 15px;
-        background-color: transparent;
-        color: white;
-        font-family: 'Kanit', sans-serif;
-        letter-spacing: 1px;
-        font-size: 20px;
-        margin-top: 50px;
-    }
-
-    button:hover{
-        background-color: #0d46af;
-        color: white;
-    }
     
-    #botao{
-        text-decoration: none;
-    }
 
 }

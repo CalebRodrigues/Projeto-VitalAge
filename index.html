@@ -48,8 +48,39 @@
         </article>
 
         <a id="botao" href="./site/login.html"><button>Login</button></a>
-
     </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js';
+        import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js';
+        var firebaseConfig = {
+            apiKey: "AIzaSyBb7OoZjFjfJlbOQvtpPH7hGDpxY5giDNI",
+            authDomain: "vitalage-site.firebaseapp.com",
+            projectId: "vitalage-site",
+            storageBucket: "vitalage-site.appspot.com",
+            messagingSenderId: "9825977049",
+            appId: "1:9825977049:web:14cc2655ba499336acb4c8"
+        };
+
+        // Inicializando o app do Firebase
+        const app = initializeApp(firebaseConfig);
+
+        // Referência para o serviço de autenticação
+        const auth = getAuth();
+
+        // Verificar o estado de autenticação do usuário
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // O usuário está autenticado, redireciona para a página inicial (home).
+                window.location.href = "./site/home.html";
+            } else {
+                // O usuário não está autenticado.
+                // Continuar na página atual (landing page).
+            }
+        });
+    </script>
  
 </body>
 </html>
