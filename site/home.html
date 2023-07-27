@@ -9,21 +9,31 @@
     <title>Vital Age</title>
 </head>
 <body>
-
     <header>
         <div id="title">
             <img src="./img/VitalAge-logo.png" alt="Logo-VitalAge">
             <h1>Vital Age</h1>
         </div>
+        <div class="header-right">
+            <p id="user-greeting">Olá, <span id="user-name"></span></p>
+            <button class="Btn" id="logout-button">
+                <div class="sign">
+                    <svg viewBox="0 0 512 512">
+                        <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                    </svg>
+                </div>
+                <div class="text-logout">Logout</div>
+            </button>
+        </div>       
     </header>
 
     <main>
-        <button id="logout-button">Logout</button>
     </main>
 
     <!-- Importando as bibliotecas do Firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
 
     <script>
         var firebaseConfig = {
@@ -41,10 +51,32 @@
         // Referência para o serviço de autenticação
         var auth = firebase.auth();
 
+        // Referência para o serviço Firestore
+        var firestore = firebase.firestore(); // Adicionando a referência para o Firestore
+
         // Verificar o estado de autenticação do usuário
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 // O usuário está autenticado
+                // Obter o UID do usuário autenticado
+                var uid = user.uid;
+                // Acessando o documento específico no Firestore
+                var usuarioRef = firestore.collection('usuarios').doc(uid);
+
+                // Obtendo os dados do documento
+                usuarioRef.get().then(function(doc) {
+                    if (doc.exists) {
+                        // O documento foi encontrado, agora você pode acessar o campo "usuario"
+                        var usuario = doc.data().usuario;
+                        // Atualizar o elemento HTML para mostrar o nome do usuário
+                        document.getElementById('user-name').textContent = usuario;
+                    } else {
+                        console.log("O documento não foi encontrado!");
+                    }
+                }).catch(function(error) {
+                    console.log("Erro ao acessar o documento:", error);
+                });
+
                 // Adicionar evento de clique ao botão de logout
                 document.getElementById('logout-button').addEventListener('click', function() {
                     // Realizar logout (deslogar)
