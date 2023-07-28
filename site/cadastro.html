@@ -57,13 +57,6 @@
         var auth = firebase.auth();
         var firestore = firebase.firestore();
 
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-            if (user) {
-                // O usuário está logado, redirecionar para a página "home.html"
-                window.location.href = "./home.html";
-            }
-        });
-
         // Função para realizar o cadastro
         function cadastrar() {
             var usuario = document.querySelector('input[name="usuario"]').value;
