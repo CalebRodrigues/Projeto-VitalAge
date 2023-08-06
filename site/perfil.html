@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="estilo/style-perfil.css">
+  <link rel="stylesheet" href="estilo/menuside.css">
+  <title>Vital Age</title>
+</head>
+<body>
+
+  <div class="container">
+    <div class="box_menu">
+      <div class="perfil">
+        <div class="card-perfil">
+          <h1>PERFIL</h1>
+          <div class="campos">
+            <input type="text" name="peso" id="" placeholder="Peso">
+            <input type="text" name="altura" id="" placeholder="Altura">
+            <div class="radio-buttons-container">
+              <div class="radio-button">
+                <input name="gender" id="radio2" class="radio-button__input" type="radio" value="Masculino">
+                <label for="radio2" class="radio-button__label">
+                  <span class="radio-button__custom"></span>
+                  Masculino
+                </label>
+              </div>
+              <div class="radio-button">
+                <input name="gender" id="radio1" class="radio-button__input" type="radio" value="Feminino">
+                <label for="radio1" class="radio-button__label">
+                  <span class="radio-button__custom"></span>
+                  Feminino
+                </label>
+              </div>
+            </div>
+          </div>
+          <button class="btn-perfil">SALVAR</button>
+        </div>
+      </div>
+      <div class="header-right">
+        <p id="user-greeting">Olá, <span id="user-name"></span></p>
+        <button class="Btn" id="logout-button">
+          <div class="sign">
+            <svg viewBox="0 0 512 512">
+              <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+            </svg>
+          </div>
+          <div class="text-logout">Logout</div>
+        </button>
+      </div>
+      <div>
+        <input type="checkbox" id="check">
+        <div class="menu-icon">
+          <label for="check">
+            <i class="fas fa-bars"></i>
+          </label>
+        </div>
+        <div class="sidebar_menu">
+          <div class="sidebar_titulo">
+            <a href="#">Painel de Controle</a>
+          </div>
+          <div class="btn_close">
+            <label for="check">
+              <i class="fas fa-times"></i>
+            </label>
+          </div>
+          <nav class="menu">
+            <ul>
+              <li>
+                <i class="fas fa-house"></i>
+                <a href="./home.html">Home</a>
+              </li>
+              <li>
+                <i class="fas fa-person-cane"></i>
+                <a href="#">Perfil</a>
+              </li>
+              <li>
+                <i class="fas fa-table-list"></i>
+                <a href="#">Registros</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>    
+
+  <!-- Importando as bibliotecas do Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
+
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyBb7OoZjFjfJlbOQvtpPH7hGDpxY5giDNI",
+      authDomain: "vitalage-site.firebaseapp.com",
+      projectId: "vitalage-site",
+      storageBucket: "vitalage-site.appspot.com",
+      messagingSenderId: "9825977049",
+      appId: "1:9825977049:web:14cc2655ba499336acb4c8"
+    };
+
+    // Inicializando o app do Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Referência para o serviço de autenticação
+    var auth = firebase.auth();
+
+    // Referência para o serviço Firestore
+    var firestore = firebase.firestore(); // Adicionando a referência para o Firestore
+
+    // Verificar o estado de autenticação do usuário
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // O usuário está autenticado
+        // Obter o UID do usuário autenticado
+        var uid = user.uid;
+        // Acessando o documento específico no Firestore
+        var usuarioRef = firestore.collection('usuarios').doc(uid);
+
+        // Obtendo os dados do documento
+        usuarioRef.get().then(function(doc) {
+          if (doc.exists) {
+            // O documento foi encontrado, agora você pode acessar o campo "usuario"
+            var usuario = doc.data().usuario;
+            // Atualizar o elemento HTML para mostrar o nome do usuário
+            document.getElementById('user-name').textContent = usuario;
+          } else {
+            console.log("O documento não foi encontrado!");
+          }
+        }).catch(function(error) {
+          console.log("Erro ao acessar o documento:", error);
+        });
+
+        // Adicionar evento de clique ao botão de logout
+        document.getElementById('logout-button').addEventListener('click', function() {
+          // Realizar logout (deslogar)
+          firebase.auth().signOut()
+            .then(function() {
+              // Logout bem-sucedido
+              console.log('Logout realizado com sucesso!');
+              // Redirecionar de volta para a página de login (ou outra página de sua escolha)
+              window.location.href = './login.html';
+            })
+            .catch(function(error) {
+              // Tratar erros em caso de falha no logout
+              console.error('Erro ao realizar logout:', error);
+            });
+        });
+
+        // Adicionar evento de clique ao botão "Salvar"
+        document.querySelector('.btn-perfil').addEventListener('click', function() {
+          // Obter os valores digitados pelo usuário
+          var peso = document.querySelector('input[name="peso"]').value;
+          var altura = document.querySelector('input[name="altura"]').value;
+          var sexo = document.querySelector('input[name="gender"]:checked').value;
+
+          // Verificar se o usuário selecionou o sexo
+          if (!sexo) {
+            alert('Por favor, selecione o sexo.');
+            return;
+          }
+
+          // Verificar se os campos peso e altura não estão vazios
+          if (peso.trim() === '' || altura.trim() === '') {
+            alert('Por favor, preencha todos os campos.');
+            return;
+          }
+
+          // Obter o UID do usuário autenticado
+          var user = firebase.auth().currentUser;
+          var uid = user.uid;
+
+          // Acessando o documento específico no Firestore
+          var usuarioRef = firestore.collection('usuarios').doc(uid);
+
+          // Salvando os dados no Firestore
+          usuarioRef.set({
+            peso: peso,
+            altura: altura,
+            sexo: sexo
+          }, { merge: true }).then(function() {
+            console.log('Dados salvos com sucesso!');
+          }).catch(function(error) {
+            console.error('Erro ao salvar dados:', error);
+          });
+        });
+
+      } else {
+        // O usuário não está autenticado.
+        // Aqui você pode redirecionar para a página de login ou executar outras ações, se necessário.
+        console.log('Usuário não autenticado. Redirecionando para a página de login...');
+        window.location.href = '../index.html';
+      }
+    });
+  </script>
+</body>
+</html>

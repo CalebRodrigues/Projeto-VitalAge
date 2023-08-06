@@ -44,24 +44,16 @@
                 <nav class="menu">
                     <ul>
                         <li>
-                            <i class="fas fa-qrcode"></i>
-                            <a href="#">Dashboard</a>
+                            <i class="fas fa-house"></i>
+                            <a href="#">Home</a>
                         </li>
                         <li>
-                            <i class="fas fa-link"></i>
-                            <a href="#">Página</a>
+                            <i class="fas fa-person-cane"></i>
+                            <a href="./perfil.html">Perfil</a>
                         </li>
                         <li>
-                            <i class="fas fa-stream"></i>
-                            <a href="#">Mensagem</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-calendar-week"></i>
-                            <a href="#">Configurações</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-question-circle"></i>
-                            <a href="#">Funções</a>
+                            <i class="fas fa-table-list"></i>
+                            <a href="#">Registros</a>
                         </li>
                     </ul>
                 </nav>
@@ -125,7 +117,7 @@
                             // Logout bem-sucedido
                             console.log('Logout realizado com sucesso!');
                             // Redirecionar de volta para a página de login (ou outra página de sua escolha)
-                            window.location.href = './login.html';
+                            window.location.href = '../index.html';
                         })
                         .catch(function(error) {
                             // Tratar erros em caso de falha no logout
@@ -136,7 +128,7 @@
                 // O usuário não está autenticado.
                 // Aqui você pode redirecionar para a página de login ou executar outras ações, se necessário.
                 console.log('Usuário não autenticado. Redirecionando para a página de login...');
-                window.location.href = './login.html';
+                window.location.href = '../index.html';
             }
         });
     </script>
