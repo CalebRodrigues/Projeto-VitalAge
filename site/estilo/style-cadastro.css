@@ -85,11 +85,7 @@ body * {
     box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.288);
     outline: none;
     box-sizing: border-box;
-}
-
-.textfield > p{
-    color: rgb(219, 219, 219);
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .textfield > input::placeholder{
