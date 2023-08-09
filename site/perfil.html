@@ -11,15 +11,17 @@
   <title>Vital Age</title>
 </head>
 <body>
-
   <div class="container">
     <div class="box_menu">
       <div class="perfil">
         <div class="card-perfil">
           <h1>PERFIL</h1>
           <div class="campos">
-            <input type="text" name="peso" id="" placeholder="Peso">
-            <input type="text" name="altura" id="" placeholder="Altura">
+            <input type="text" name="peso" placeholder="Peso" oninput="restrictToNumbers(this)">
+            <div class="idade-altura">
+              <input type="text" name="altura" placeholder="Altura" oninput="restrictToNumbers(this)">
+              <input type="text" name="idade" placeholder="Idade" oninput="restrictToNumbers(this)">
+            </div>
             <div class="radio-buttons-container">
               <div class="radio-button">
                 <input name="gender" id="radio2" class="radio-button__input" type="radio" value="Masculino">
@@ -156,6 +158,7 @@
           // Obter os valores digitados pelo usuário
           var peso = document.querySelector('input[name="peso"]').value;
           var altura = document.querySelector('input[name="altura"]').value;
+          var idade = document.querySelector('input[name="idade"]').value;
           var sexo = document.querySelector('input[name="gender"]:checked').value;
 
           // Verificar se o usuário selecionou o sexo
@@ -164,15 +167,11 @@
             return;
           }
 
-          // Verificar se os campos peso e altura não estão vazios
-          if (peso.trim() === '' || altura.trim() === '') {
+          // Verificar se os campos peso, altura e idade não estão vazios
+          if (peso.trim() === '' || altura.trim() === '' || idade.trim() === '') {
             alert('Por favor, preencha todos os campos.');
             return;
           }
-
-          // Obter o UID do usuário autenticado
-          var user = firebase.auth().currentUser;
-          var uid = user.uid;
 
           // Acessando o documento específico no Firestore
           var usuarioRef = firestore.collection('usuarios').doc(uid);
@@ -181,6 +180,7 @@
           usuarioRef.set({
             peso: peso,
             altura: altura,
+            idade: idade,
             sexo: sexo
           }, { merge: true }).then(function() {
             alert('Dados salvos com sucesso!');
@@ -191,11 +191,15 @@
 
       } else {
         // O usuário não está autenticado.
-        // Aqui você pode redirecionar para a página de login ou executar outras ações, se necessário.
+        // Redirecionar para landing page.
         console.log('Usuário não autenticado. Redirecionando para a página de login...');
         window.location.href = '../index.html';
       }
     });
+
+    function restrictToNumbers(input) {
+      input.value = input.value.replace(/[^\d]/g, ''); // Remover também o ponto da regex
+    }
   </script>
 </body>
 </html>

@@ -190,6 +190,35 @@ p#user-greeting {
   color: rgb(219, 219, 219);
 }
 
+.idade-altura {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.idade-altura > input {
+  width: 48%;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  background: #313131;
+  color: rgb(219, 219, 219);
+  font-size: 12pt;
+  box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.288);
+  outline: none;
+  box-sizing: border-box;
+  margin-top: 5%;
+}
+
+.idade-altura > input:hover {
+  box-shadow: 0px 2px 2px #0d46af;
+}
+
+.idade-altura > input::placeholder {
+  color: rgb(219, 219, 219);
+}
+
 .btn-perfil {
   padding: 16px;
   margin: 25px;
@@ -276,68 +305,85 @@ p#user-greeting {
   box-shadow: 0 0 10px #0d46af;
 }
 
-@media only screen and (max-width: 320px) {
-  .card-perfil{
-   width: 90%;
-   height: 350px;
-  }
-  .campos{
-   margin-top: 0px;
-  }
-  .campos > input{
-   width: 90%;
-  }
-  .btn-perfil{
-   width: 50%;
-  }
- .header-right{
-   display: none;
- }
- .radio-buttons-container {
-  margin-bottom: -20px;
-
+.tooltip {
+  position: absolute;
+  background-color: #333;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s, visibility 0.3s;
 }
+
+.tooltip.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media only screen and (max-width: 320px) {
+  .card-perfil {
+    width: 90%;
+    height: 350px;
+  }
+  .campos {
+    margin-top: 0px;
+  }
+  .campos > input {
+    width: 90%;
+  }
+  .btn-perfil {
+    width: 50%;
+  }
+  .header-right {
+    display: none;
+  }
+  .radio-buttons-container {
+    margin-bottom: -20px;
+  }
+  .idade-altura {
+    width: 90%;
+  }
 }
 
 @media only screen and (max-width: 600px) and (min-width: 321px) {
-   .card-perfil{
+  .card-perfil {
     width: 90%;
     height: 500px;
-   }
-   .campos{
+  }
+  .campos {
     margin-top: 5px;
-   }
-   .campos > input{
+  }
+  .campos > input {
     width: 90%;
-   }
-   .btn-perfil{
+  }
+  .btn-perfil {
     width: 50%;
-   }
-  .header-right{
+  }
+  .header-right {
     display: none;
+  }
+  .idade-altura {
+    width: 90%;
   }
 }
 
 @media only screen and (max-width: 820px) and (min-width: 601px) {
-   .card-perfil{
+  .card-perfil {
     width: 80%;
-   }
-   .btn-perfil{
+  }
+  .btn-perfil {
     width: 30%;
-   }
+  }
 }
 
 @media only screen and (max-width: 1366px) and (min-width: 821px) {
-  .card-perfil{
-   width: 50%;
-   height: 70%;
+  .card-perfil {
+    width: 50%;
+    height: 70%;
   }
-  .btn-perfil{
-   width: 30%;
+  .btn-perfil {
+    width: 30%;
   }
 }
-
-
-
-
-
