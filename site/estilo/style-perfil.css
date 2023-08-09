@@ -305,23 +305,6 @@ p#user-greeting {
   box-shadow: 0 0 10px #0d46af;
 }
 
-.tooltip {
-  position: absolute;
-  background-color: #333;
-  color: white;
-  padding: 5px;
-  border-radius: 5px;
-  font-size: 14px;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s, visibility 0.3s;
-}
-
-.tooltip.active {
-  visibility: visible;
-  opacity: 1;
-}
-
 @media only screen and (max-width: 320px) {
   .card-perfil {
     width: 90%;
