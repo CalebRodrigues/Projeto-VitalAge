@@ -214,7 +214,7 @@ h1{
     padding: 15px;
     background-color: #292929;
     border-radius: 8px;
-    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.295);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.295);
     color: white;
     font-size: 20px;
     font-weight: 500;
@@ -222,6 +222,20 @@ h1{
 
 #heart-rate-list li:hover {
     box-shadow: 0.5px 0.5px 2px 2px #0d46af;
+}
+
+#heart-rate-list::-webkit-scrollbar {
+  width: 5px;               /* width of the entire scrollbar */
+}
+
+#heart-rate-list::-webkit-scrollbar-track {
+  background: transparent;        /* color of the tracking area */
+}
+
+#heart-rate-list::-webkit-scrollbar-thumb {
+  background-color: #666666;    /* color of the scroll thumb */
+  border-radius: 30px;       /* roundness of the scroll thumb */
+  border: none;  /* creates padding around scroll thumb */
 }
 
 @media only screen and (max-width: 320px) {
