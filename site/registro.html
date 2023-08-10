@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="estilo/style-home.css">
+    <link rel="stylesheet" href="estilo/style-registro.css">
     <link rel="stylesheet" href="estilo/menuside.css">
     <title>Vital Age</title>
 </head>
@@ -14,6 +14,16 @@
 
     <div class="container">
         <div class="box_menu">
+            <div class="registro">
+                <div class="card-registro">
+                    <h1>Registros</h1>
+                    <div id="heart-rate-data">
+                        <ol id="heart-rate-list">
+                            <!-- A lista de batimentos cardíacos será exibida aqui -->
+                        </ol>
+                    </div>
+                </div>
+            </div>
             <div class="header-right">
                 <p id="user-greeting">Olá, <span id="user-name"></span></p>
                 <button class="Btn" id="logout-button">
@@ -26,38 +36,38 @@
                 </button>
             </div>
             <div>
-            <input type="checkbox" id="check">
-            <div class="menu-icon">
-                <label for="check">
-                    <i class="fas fa-bars"></i>
-                </label>
-            </div>
-            <div class="sidebar_menu">
-                <div class="sidebar_titulo">
-                    <a href="#">Painel de Controle</a>
-                </div>
-                <div class="btn_close">
+                <input type="checkbox" id="check">
+                <div class="menu-icon">
                     <label for="check">
-                        <i class="fas fa-times"></i>
+                        <i class="fas fa-bars"></i>
                     </label>
                 </div>
-                <nav class="menu">
-                    <ul>
-                        <li>
-                            <i class="fas fa-house"></i>
-                            <a href="./home.html">Home</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-person-cane"></i>
-                            <a href="./perfil.html">Perfil</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-table-list"></i>
-                            <a href="./registro.html">Registros</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+                <div class="sidebar_menu">
+                    <div class="sidebar_titulo">
+                        <a href="#">Painel de Controle</a>
+                    </div>
+                    <div class="btn_close">
+                        <label for="check">
+                            <i class="fas fa-times"></i>
+                        </label>
+                    </div>
+                    <nav class="menu">
+                        <ul>
+                            <li>
+                                <i class="fas fa-house"></i>
+                                <a href="./home.html">Home</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-person-cane"></i>
+                                <a href="./perfil.html">Perfil</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-table-list"></i>
+                                <a href="./registro.html">Registros</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>    
@@ -84,23 +94,34 @@
         var auth = firebase.auth();
 
         // Referência para o serviço Firestore
-        var firestore = firebase.firestore(); // Adicionando a referência para o Firestore
+        var firestore = firebase.firestore();
 
         // Verificar o estado de autenticação do usuário
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 // O usuário está autenticado
-                // Obter o UID do usuário autenticado
                 var uid = user.uid;
-                // Acessando o documento específico no Firestore
+                var batimentosRef = firestore.collection('usuarios').doc(uid).collection('batimentos');
+
+                // Recuperar os dados de batimentos e exibi-los na lista ordenada 'heart-rate-list'
+                batimentosRef.orderBy('timestamp', 'desc').get().then(function(querySnapshot) {
+                    querySnapshot.forEach(function(doc) {
+                        var batimentos = doc.data().batimentos;
+                        var timestamp = doc.data().timestamp.toDate().toLocaleString();
+
+                        var li = document.createElement('li');
+                        li.textContent = "Batimentos: " + batimentos + " - " + timestamp;
+                        document.getElementById('heart-rate-list').appendChild(li);
+                    });
+                }).catch(function(error) {
+                    console.error("Erro ao obter os batimentos:", error);
+                });
+
                 var usuarioRef = firestore.collection('usuarios').doc(uid);
 
-                // Obtendo os dados do documento
                 usuarioRef.get().then(function(doc) {
                     if (doc.exists) {
-                        // O documento foi encontrado, agora você pode acessar o campo "usuario"
                         var usuario = doc.data().usuario;
-                        // Atualizar o elemento HTML para mostrar o nome do usuário
                         document.getElementById('user-name').textContent = usuario;
                     } else {
                         console.log("O documento não foi encontrado!");
@@ -109,24 +130,17 @@
                     console.log("Erro ao acessar o documento:", error);
                 });
 
-                // Adicionar evento de clique ao botão de logout
                 document.getElementById('logout-button').addEventListener('click', function() {
-                    // Realizar logout (deslogar)
                     firebase.auth().signOut()
                         .then(function() {
-                            // Logout bem-sucedido
                             console.log('Logout realizado com sucesso!');
-                            // Redirecionar de volta para a página de login (ou outra página de sua escolha)
                             window.location.href = '../index.html';
                         })
                         .catch(function(error) {
-                            // Tratar erros em caso de falha no logout
                             console.error('Erro ao realizar logout:', error);
                         });
                 });
             } else {
-                // O usuário não está autenticado.
-                // Aqui você pode redirecionar para a página de login ou executar outras ações, se necessário.
                 console.log('Usuário não autenticado. Redirecionando para a página de login...');
                 window.location.href = '../index.html';
             }
