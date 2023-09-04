@@ -20,13 +20,13 @@
                         <canvas id="myChart"></canvas>
                     </div>
                     <div id="relatorio">
-                        <div class="relatorio-imc">
+                        <div class="relatorio-box">
+                            <h1>MÉDIA</h1>
+                            <p id="paragrafo-batimentos"></p>
+                       </div>
+                        <div class="relatorio-box">
                             <h1>IMC</h1>
-                            <p>ANÁLISE</p>
-                        </div>
-                        <div class="relatorio-batimentos">
-                             <h1>BATIMENTOS</h1>
-                             <p>ANÁLISE</p>
+                            <p id="paragrafo-imc"></p>
                         </div>
                     </div>
                 </div>
@@ -104,6 +104,8 @@
             if (user) {
                 var uid = user.uid;
 
+                var batimentosArray = []; // Array para armazenar os batimentos cardíacos
+
                 var batimentosRefRegistros = firebase.database().ref('users/' + uid + '/heartbeats');
 
                 batimentosRefRegistros.on('value', function(snapshot) {
@@ -114,22 +116,58 @@
                         var batimentoData = childSnapshot.val();
                         data.push(batimentoData.bpm);
                         labels.push(formatDate(batimentoData.timestamp));
+
+                        // Adicione cada batimento ao array
+                        batimentosArray.push(batimentoData.bpm);
                     });
 
                     var ctx = document.getElementById('myChart').getContext('2d');
                     var myChart = new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Batimentos',
-                                data: data,
-                                fill: false,
-                                borderColor: '#0d46af',
-                                tension: 0.1
-                            }]
-                        }
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Batimentos',
+            data: data,
+            fill: true,
+            borderColor: '#0d46af',
+            tension: 0.1
+        }]
+    },
+    options: {
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'whitesmoke' // Define a cor das legendas do gráfico
+                }
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: 'whitesmoke' // Define a cor das marcas do eixo x (tempo)
+                },
+                grid: {
+                    display: false // Remove as linhas de grade do eixo y
+                }
+            },
+            y: {
+                ticks: {
+                    color: 'whitesmoke' // Define a cor das marcas do eixo y (batimentos)
+                },
+
+            }
+        }
+    }
                     });
+
+                    // Calcule a média dos batimentos cardíacos e exiba o resultado
+                    var mediaBatimentos = 0;
+                    for (let i = 0; i < batimentosArray.length; i++) {
+                        mediaBatimentos += batimentosArray[i];
+                    }
+                    mediaBatimentos = mediaBatimentos / batimentosArray.length;
+                    document.getElementById('paragrafo-batimentos').innerHTML = mediaBatimentos.toFixed(0);
                 });
 
                 var usuarioRef = firestore.collection('usuarios').doc(uid);
@@ -137,18 +175,37 @@
                 usuarioRef.get().then(function(doc) {
                     if (doc.exists) {
                         var usuario = doc.data().usuario;
+                        var altura = parseFloat(doc.data().altura); // Converter altura para número
+                        var peso = parseFloat(doc.data().peso); // Converter peso para número
+                        var sexo = doc.data().sexo;
+                        var idade = parseInt(doc.data().idade); // Converter idade para número
                         document.getElementById('user-name').textContent = usuario;
+
+                        // Cálculo do IMC
+                        var imc = peso / ((altura / 100) * (altura / 100));
+
+                        document.getElementById('paragrafo-imc').innerHTML = imc.toFixed(0);
                     } else {
                         console.log("O documento não foi encontrado!");
                     }
                 }).catch(function(error) {
                     console.log("Erro ao acessar o documento:", error);
                 });
+                document.getElementById('logout-button').addEventListener('click', function() {
+                firebase.auth().signOut()
+                    .then(function() {
+                        console.log('Logout realizado com sucesso!');
+                        window.location.href = '../index.html';
+                    })
+                    .catch(function(error) {
+                        console.error('Erro ao realizar logout:', error);
+                    });
+            });
             } else {
                 console.log('Usuário não autenticado. Redirecionando para a página de login...');
                 window.location.href = '../index.html';
             }
-        }); 
+        });
 
         function formatDate(timestamp) {
             var date = new Date(timestamp * 1000);
@@ -159,9 +216,8 @@
             var minute = date.getMinutes().toString().padStart(2, '0');
             var second = date.getSeconds().toString().padStart(2, '0');
 
-            return day + '/' + month + ' - ' + hour + ':' + minute + ':' + second;
+            return day + '/' + month;
         }
-
     </script>
 </body>
 </html>
