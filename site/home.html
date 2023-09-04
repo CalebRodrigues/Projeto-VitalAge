@@ -4,28 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Define o ícone da aba do navegador -->
     <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
+    <!-- Inclui o CSS da biblioteca Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Inclui seus arquivos CSS personalizados -->
     <link rel="stylesheet" href="estilo/style-home.css">
     <link rel="stylesheet" href="estilo/menuside.css">
     <title>Vital Age</title>
 </head>
 <body>
-
     <div class="container">
         <div class="box_menu">
             <div class="home">
                 <div class="card-home">
                     <div id="grafico">
+                        <!-- O gráfico será renderizado aqui -->
                         <canvas id="myChart"></canvas>
                     </div>
                     <div id="relatorio">
                         <div class="relatorio-box">
                             <h1>MÉDIA</h1>
+                            <!-- Aqui serão exibidos os batimentos cardíacos médios -->
                             <p id="paragrafo-batimentos"></p>
-                       </div>
+                        </div>
                         <div class="relatorio-box">
                             <h1>IMC</h1>
+                            <!-- Aqui será exibido o Índice de Massa Corporal (IMC) -->
                             <p id="paragrafo-imc"></p>
                         </div>
                     </div>
@@ -33,9 +38,11 @@
             </div>
             <div class="header-right">
                 <p id="user-greeting">Olá, <span id="user-name"></span></p>
+                <!-- Botão de logout -->
                 <button class="Btn" id="logout-button">
                     <div class="sign">
                         <svg viewBox="0 0 512 512">
+                            <!-- Ícone de logout -->
                             <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
                         </svg>
                     </div>
@@ -43,181 +50,56 @@
                 </button>
             </div>
             <div>
-            <input type="checkbox" id="check">
-            <div class="menu-icon">
-                <label for="check">
-                    <i class="fas fa-bars"></i>
-                </label>
-            </div>
-            <div class="sidebar_menu">
-                <div class="sidebar_titulo">
-                    <a href="#">Painel de Controle</a>
-                </div>
-                <div class="btn_close">
+                <input type="checkbox" id="check">
+                <div class="menu-icon">
                     <label for="check">
-                        <i class="fas fa-times"></i>
+                        <!-- Ícone de menu -->
+                        <i class="fas fa-bars"></i>
                     </label>
                 </div>
-                <nav class="menu">
-                    <ul>
-                        <li>
-                            <i class="fas fa-house"></i>
-                            <a href="./home.html">Home</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-person-cane"></i>
-                            <a href="./perfil.html">Perfil</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-table-list"></i>
-                            <a href="./registro.html">Registros</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+                <div class="sidebar_menu">
+                    <div class="sidebar_titulo">
+                        <a href="#">Painel de Controle</a>
+                    </div>
+                    <div class="btn_close">
+                        <label for="check">
+                            <!-- Ícone de fechar o menu -->
+                            <i class="fas fa-times"></i>
+                        </label>
+                    </div>
+                    <nav class="menu">
+                        <ul>
+                            <li>
+                                <!-- Ícone e link para a página Home -->
+                                <i class="fas fa-house"></i>
+                                <a href="./home.html">Home</a>
+                            </li>
+                            <li>
+                                <!-- Ícone e link para a página Perfil -->
+                                <i class="fas fa-person-cane"></i>
+                                <a href="./perfil.html">Perfil</a>
+                            </li>
+                            <li>
+                                <!-- Ícone e link para a página Registros -->
+                                <i class="fas fa-table-list"></i>
+                                <a href="./registro.html">Registros</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>    
 
+    <!-- Inclui a biblioteca Chart.js para criar o gráfico -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Inclui as bibliotecas do Firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-database.js"></script>
 
+    <script src="./js/script-home.js"></script>
 
-    <script>
-        var firebaseConfig = {
-            apiKey: "AIzaSyBb7OoZjFjfJlbOQvtpPH7hGDpxY5giDNI",
-            authDomain: "vitalage-site.firebaseapp.com",
-            projectId: "vitalage-site",
-            storageBucket: "vitalage-site.appspot.com",
-            messagingSenderId: "9825977049",
-            appId: "1:9825977049:web:14cc2655ba499336acb4c8"
-        };
-
-        firebase.initializeApp(firebaseConfig);
-
-        var firestore = firebase.firestore();
-
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                var uid = user.uid;
-
-                var batimentosArray = []; // Array para armazenar os batimentos cardíacos
-
-                var batimentosRefRegistros = firebase.database().ref('users/' + uid + '/heartbeats');
-
-                batimentosRefRegistros.on('value', function(snapshot) {
-                    var data = [];
-                    var labels = [];
-
-                    snapshot.forEach(function(childSnapshot) {
-                        var batimentoData = childSnapshot.val();
-                        data.push(batimentoData.bpm);
-                        labels.push(formatDate(batimentoData.timestamp));
-
-                        // Adicione cada batimento ao array
-                        batimentosArray.push(batimentoData.bpm);
-                    });
-
-                    var ctx = document.getElementById('myChart').getContext('2d');
-                    var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: labels,
-        datasets: [{
-            label: 'Batimentos',
-            data: data,
-            fill: true,
-            borderColor: '#0d46af',
-            tension: 0.1
-        }]
-    },
-    options: {
-        plugins: {
-            legend: {
-                labels: {
-                    color: 'whitesmoke' // Define a cor das legendas do gráfico
-                }
-            }
-        },
-        scales: {
-            x: {
-                ticks: {
-                    color: 'whitesmoke' // Define a cor das marcas do eixo x (tempo)
-                },
-                grid: {
-                    display: false // Remove as linhas de grade do eixo y
-                }
-            },
-            y: {
-                ticks: {
-                    color: 'whitesmoke' // Define a cor das marcas do eixo y (batimentos)
-                },
-
-            }
-        }
-    }
-                    });
-
-                    // Calcule a média dos batimentos cardíacos e exiba o resultado
-                    var mediaBatimentos = 0;
-                    for (let i = 0; i < batimentosArray.length; i++) {
-                        mediaBatimentos += batimentosArray[i];
-                    }
-                    mediaBatimentos = mediaBatimentos / batimentosArray.length;
-                    document.getElementById('paragrafo-batimentos').innerHTML = mediaBatimentos.toFixed(0);
-                });
-
-                var usuarioRef = firestore.collection('usuarios').doc(uid);
-
-                usuarioRef.get().then(function(doc) {
-                    if (doc.exists) {
-                        var usuario = doc.data().usuario;
-                        var altura = parseFloat(doc.data().altura); // Converter altura para número
-                        var peso = parseFloat(doc.data().peso); // Converter peso para número
-                        var sexo = doc.data().sexo;
-                        var idade = parseInt(doc.data().idade); // Converter idade para número
-                        document.getElementById('user-name').textContent = usuario;
-
-                        // Cálculo do IMC
-                        var imc = peso / ((altura / 100) * (altura / 100));
-
-                        document.getElementById('paragrafo-imc').innerHTML = imc.toFixed(0);
-                    } else {
-                        console.log("O documento não foi encontrado!");
-                    }
-                }).catch(function(error) {
-                    console.log("Erro ao acessar o documento:", error);
-                });
-                document.getElementById('logout-button').addEventListener('click', function() {
-                firebase.auth().signOut()
-                    .then(function() {
-                        console.log('Logout realizado com sucesso!');
-                        window.location.href = '../index.html';
-                    })
-                    .catch(function(error) {
-                        console.error('Erro ao realizar logout:', error);
-                    });
-            });
-            } else {
-                console.log('Usuário não autenticado. Redirecionando para a página de login...');
-                window.location.href = '../index.html';
-            }
-        });
-
-        function formatDate(timestamp) {
-            var date = new Date(timestamp * 1000);
-            var day = date.getDate().toString().padStart(2, '0');
-            var month = (date.getMonth() + 1).toString().padStart(2, '0'); // Os meses são indexados a partir de 0, por isso, somamos 1.
-            var year = date.getFullYear();
-            var hour = date.getHours().toString().padStart(2, '0');
-            var minute = date.getMinutes().toString().padStart(2, '0');
-            var second = date.getSeconds().toString().padStart(2, '0');
-
-            return day + '/' + month;
-        }
-    </script>
 </body>
 </html>
