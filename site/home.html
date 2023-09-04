@@ -14,6 +14,23 @@
 
     <div class="container">
         <div class="box_menu">
+            <div class="home">
+                <div class="card-home">
+                    <div id="grafico">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div id="relatorio">
+                        <div class="relatorio-imc">
+                            <h1>IMC</h1>
+                            <p>ANÁLISE</p>
+                        </div>
+                        <div class="relatorio-batimentos">
+                             <h1>BATIMENTOS</h1>
+                             <p>ANÁLISE</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="header-right">
                 <p id="user-greeting">Olá, <span id="user-name"></span></p>
                 <button class="Btn" id="logout-button">
@@ -62,10 +79,12 @@
         </div>
     </div>    
 
-    <!-- Importando as bibliotecas do Firebase -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-database.js"></script>
+
 
     <script>
         var firebaseConfig = {
@@ -77,30 +96,47 @@
             appId: "1:9825977049:web:14cc2655ba499336acb4c8"
         };
 
-        // Inicializando o app do Firebase
         firebase.initializeApp(firebaseConfig);
 
-        // Referência para o serviço de autenticação
-        var auth = firebase.auth();
+        var firestore = firebase.firestore();
 
-        // Referência para o serviço Firestore
-        var firestore = firebase.firestore(); // Adicionando a referência para o Firestore
-
-        // Verificar o estado de autenticação do usuário
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
-                // O usuário está autenticado
-                // Obter o UID do usuário autenticado
                 var uid = user.uid;
-                // Acessando o documento específico no Firestore
+
+                var batimentosRefRegistros = firebase.database().ref('users/' + uid + '/heartbeats');
+
+                batimentosRefRegistros.on('value', function(snapshot) {
+                    var data = [];
+                    var labels = [];
+
+                    snapshot.forEach(function(childSnapshot) {
+                        var batimentoData = childSnapshot.val();
+                        data.push(batimentoData.bpm);
+                        labels.push(formatDate(batimentoData.timestamp));
+                    });
+
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Batimentos',
+                                data: data,
+                                fill: false,
+                                borderColor: '#0d46af',
+                                tension: 0.1
+                            }]
+                        }
+                    });
+                });
+
                 var usuarioRef = firestore.collection('usuarios').doc(uid);
 
-                // Obtendo os dados do documento
                 usuarioRef.get().then(function(doc) {
                     if (doc.exists) {
-                        // O documento foi encontrado, agora você pode acessar o campo "usuario"
                         var usuario = doc.data().usuario;
-                        // Atualizar o elemento HTML para mostrar o nome do usuário
                         document.getElementById('user-name').textContent = usuario;
                     } else {
                         console.log("O documento não foi encontrado!");
@@ -108,29 +144,24 @@
                 }).catch(function(error) {
                     console.log("Erro ao acessar o documento:", error);
                 });
-
-                // Adicionar evento de clique ao botão de logout
-                document.getElementById('logout-button').addEventListener('click', function() {
-                    // Realizar logout (deslogar)
-                    firebase.auth().signOut()
-                        .then(function() {
-                            // Logout bem-sucedido
-                            console.log('Logout realizado com sucesso!');
-                            // Redirecionar de volta para a página de login (ou outra página de sua escolha)
-                            window.location.href = '../index.html';
-                        })
-                        .catch(function(error) {
-                            // Tratar erros em caso de falha no logout
-                            console.error('Erro ao realizar logout:', error);
-                        });
-                });
             } else {
-                // O usuário não está autenticado.
-                // Aqui você pode redirecionar para a página de login ou executar outras ações, se necessário.
                 console.log('Usuário não autenticado. Redirecionando para a página de login...');
                 window.location.href = '../index.html';
             }
-        });
+        }); 
+
+        function formatDate(timestamp) {
+            var date = new Date(timestamp * 1000);
+            var day = date.getDate().toString().padStart(2, '0');
+            var month = (date.getMonth() + 1).toString().padStart(2, '0'); // Os meses são indexados a partir de 0, por isso, somamos 1.
+            var year = date.getFullYear();
+            var hour = date.getHours().toString().padStart(2, '0');
+            var minute = date.getMinutes().toString().padStart(2, '0');
+            var second = date.getSeconds().toString().padStart(2, '0');
+
+            return day + '/' + month + ' - ' + hour + ':' + minute + ':' + second;
+        }
+
     </script>
 </body>
 </html>
