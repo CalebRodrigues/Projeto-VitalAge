@@ -27,245 +27,295 @@ body {
   color: white;
 }
 
-main{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 5px;
+main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
 }
 
-#title{
-    display: flex;
-    flex-direction: row;
-    line-height: 10px;
-    align-items: center;
+#title {
+  display: flex;
+  flex-direction: row;
+  line-height: 10px;
+  align-items: center;
 }
 
-#title > img{
-    width: 80px;
+#title > img {
+  width: 80px;
 }
 
-#title > h1{
-    font-size: 45px;
-    margin-left: 15px;
-    letter-spacing: 1px;
+#title > h1 {
+  font-size: 45px;
+  margin-left: 15px;
+  letter-spacing: 1px;
 }
 
-h1{
-    font-weight: 200;
+h1 {
+  font-weight: 200;
 }
 
 .Btn {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 45px;
-    height: 45px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition-duration: .3s;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-    background-color: #0d46af;
-  }
-  
-  /* plus sign */
-  .sign {
-    width: 100%;
-    transition-duration: .3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .sign svg {
-    width: 17px;
-  }
-  
-  .sign svg path {
-    fill: white;
-  }
-  /* text */
-  .text-logout {
-    position: absolute;
-    right: 0%;
-    width: 0%;
-    opacity: 0;
-    color: white;
-    font-size: 1.2em;
-    font-weight: 600;
-    transition-duration: .3s;
-  }
-  /* hover effect on button width */
-  .Btn:hover {
-    width: 125px;
-    border-radius: 40px;
-    transition-duration: .3s;
-  }
-  
-  .Btn:hover .sign {
-    width: 30%;
-    transition-duration: .3s;
-    padding-left: 5px;
-  }
-  /* hover effect button's text */
-  .Btn:hover .text-logout {
-    opacity: 1;
-    width: 70%;
-    transition-duration: .3s;
-    padding-right: 10px;
-  }
-  /* button click effect*/
-  .Btn:active {
-    transform: translate(2px ,2px);
-  }
-
-  p#user-greeting {
-    margin-right: 22px;
-    font-size: 19px;
-  }
-
-  .registro {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .card-registro {
-    height: 80%;
-    width: 55%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background: #292929;
-    border-radius: 20px;
-    box-shadow: 0px 10px 40px #0000005b;
-  }
-
-  .card-registro > h1 {
-    color: #dbdbdb;
-    font-weight: 800;
-    margin-bottom: 15px;
-    margin-top: 12px;
-    font-size: 40px;
-  }  
-
-   #heart-rate-data{
-    padding: 30px;
-    width: 100%;
-    height: 100%;
-   }
-
-   #heart-rate-list {
-    width: 100%;
-    list-style-type: none;
-    padding: 0;
-    max-height: 350px; /* Defina a altura máxima desejada para a lista */
-    overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando necessário */
-    list-style-type: none;
-    padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: #0d46af;
 }
 
+/* plus sign */
+.sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 17px;
+}
+
+.sign svg path {
+  fill: white;
+}
+
+/* text */
+.text-logout {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: .3s;
+}
+
+/* hover effect on button width */
+.Btn:hover {
+  width: 125px;
+  border-radius: 40px;
+  transition-duration: .3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 5px;
+}
+
+/* hover effect button's text */
+.Btn:hover .text-logout {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+
+/* button click effect*/
+.Btn:active {
+  transform: translate(2px ,2px);
+}
+
+p#user-greeting {
+  margin-right: 22px;
+  font-size: 19px;
+}
+
+.registro {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-registro {
+  height: 80%;
+  width: 55%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #292929;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px #0000005b;
+}
+
+.card-registro > h1 {
+  color: #dbdbdb;
+  font-weight: 800;
+  margin-bottom: -2%;
+  margin-top: 5%;
+  font-size: 40px;
+}
+
+#heart-rate-data {
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+}
+
+#heart-rate-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Centraliza os cards horizontalmente */
+  max-height: 90%; /* Altura máxima desejada para a lista */
+  overflow-y: auto; /* Adiciona uma barra de rolagem vertical quando necessário */
+  list-style-type: none;
+  padding: 5px;
+}
+
+
 #heart-rate-list li {
-    margin: 0 auto; /* Centraliza horizontalmente os itens */
-    margin-bottom: 10px;
-    padding: 15px;
-    background-color: #313131;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.295);
-    color: white;
-    font-size: 20px;
-    font-weight: 500;
+  width: calc(33.33% - 10px); 
+  margin: 5px;
+  padding: 15px;
+  background-color: #313131;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.295);
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza os itens horizontalmente */
+  justify-content: center; /* Centraliza o conteúdo verticalmente */
+  text-align: center; /* Centraliza o texto horizontalmente */
+  position: relative; /* Permite posicionar elementos filhos */
+}
+
+#heart-rate-list li .heart-icon {
+  width: 64px; /* Tamanho do ícone do coração */
+  height: 64px;
+  margin-bottom: 10px;
+}
+
+#heart-rate-list li .heart-rate {
+  position: absolute; /* Posiciona o número de batimentos de forma absoluta */
+  bottom: 10px; /* Ajusta a posição vertical do número */
+  font-size: 24px; /* Tamanho da fonte do número de batimentos */
+  color: white;
+}
+
+#heart-rate-list li .view-button {
+  width: 80%;
+  border: 2px solid #0d46af;
+  padding: 8px;
+  border-radius: 15px;
+  background-color: transparent;
+  color: white;
+  letter-spacing: 1px;
+  font-weight: 800;
+  margin-top: 10px; /* Adicione um pequeno espaço acima do botão */
+}
+
+#heart-rate-list li .view-button:hover {
+  background-color: #0d46af;
+  color: white;
+  cursor: pointer;
 }
 
 #heart-rate-list li:hover {
-    box-shadow: 0.5px 0.5px 2px 2px #0d46af;
+  box-shadow: 0.2px 0.2px 1.5px 1.5px #0d46af;
 }
 
+
 #heart-rate-list::-webkit-scrollbar {
-  width: 5px;               /* width of the entire scrollbar */
+  width: 5px;               /* Largura da barra de rolagem */
 }
 
 #heart-rate-list::-webkit-scrollbar-track {
-  background: transparent;        /* color of the tracking area */
+  background: transparent;   /* Cor da área de rastreamento */
 }
 
 #heart-rate-list::-webkit-scrollbar-thumb {
-  background-color: #666666;    /* color of the scroll thumb */
-  border-radius: 30px;       /* roundness of the scroll thumb */
-  border: none;  /* creates padding around scroll thumb */
+  background-color: #666666; /* Cor do polegar da barra de rolagem */
+  border-radius: 30px;       /* Arredondamento do polegar da barra de rolagem */
+  border: none;              /* Cria espaço em torno do polegar da barra de rolagem */
 }
 
 @media only screen and (max-width: 320px) {
-    .registro{
-        margin-top: 20px;
-    }
-    .card-registro {
-      width: 90%;
-      height: 400px;
-      height: 85%;
-      padding: 0;
-    }
-    .card-registro > h1 {
-        margin-top: 10px;
-        margin-bottom: 0px;
-      }
-    .header-right {
-      display: none;
-    }
-    .card-registro > h1{
-        font-size: 35px;
-    }
-    #heart-rate-list {
-        width: 100%;
-        max-height: 250px; /* Defina a altura máxima desejada para a lista */
-        padding: 5px;
-    }
-    #heart-rate-list::-webkit-scrollbar {
-      width: 0px;               /* width of the entire scrollbar */
-    }
+  .registro {
+    margin-top: 20px;
   }
-  
-  @media only screen and (max-width: 600px) and (min-width: 321px) {
-    .registro{
-        margin-top: 20px;
-    }
-    .card-registro {
-      width: 90%;
-      height: 400px;
-      height: 80%;
-      padding: 0;
-    }
-    .card-registro > h1 {
-        margin-top: 22%;
-        margin-bottom: 0px;
-      }
-    .header-right {
-      display: none;
-    }
-    .card-registro > h1{
-        font-size: 35px;
-    }
-    #heart-rate-list {
-        width: 100%;
-        max-height: 80%; /* Defina a altura máxima desejada para a lista */
-        padding: 5px;
-    }
-    #heart-rate-list::-webkit-scrollbar {
-      width: 0px;               /* width of the entire scrollbar */
-    }
+  .card-registro {
+    width: 90%;
+    height: 400px;
+    height: 85%;
+    padding: 0;
   }
-  
-  @media only screen and (max-width: 820px) and (min-width: 601px) {
-    .card-perfil {
-      width: 80%;
-    }
-    .btn-perfil {
-      width: 30%;
-    }
+  .card-registro > h1 {
+    margin-top: 10px;
+    margin-bottom: 0px;
   }
+  .header-right {
+    display: none;
+  }
+  .card-registro > h1 {
+    font-size: 35px;
+  }
+  #heart-rate-list {
+    width: 100%;
+    max-height: 90%; /* Defina a altura máxima desejada para a lista */
+    padding: 5px;
+  }
+  #heart-rate-list::-webkit-scrollbar {
+    width: 0px;               /* width of the entire scrollbar */
+  }
+
+  #heart-rate-list li {
+    width: 100%; 
+  }
+}
+
+@media only screen and (max-width: 600px) and (min-width: 321px) {
+  .registro {
+    margin-top: 20px;
+  }
+  .card-registro {
+    width: 90%;
+    height: 400px;
+    height: 80%;
+    padding: 0;
+  }
+  .card-registro > h1 {
+    margin-top: 22%;
+    margin-bottom: 0px;
+  }
+  .header-right {
+    display: none;
+  }
+  .card-registro > h1 {
+    font-size: 35px;
+  }
+  #heart-rate-list {
+    width: 100%;
+    max-height: 90%; /* Defina a altura máxima desejada para a lista */
+    padding: 8px;
+  }
+  #heart-rate-list::-webkit-scrollbar {
+    width: 0px;               /* width of the entire scrollbar */
+  }
+  #heart-rate-list li {
+    width: 100%; 
+  }
+}
+
+@media only screen and (max-width: 820px) and (min-width: 601px) {
+  .card-perfil {
+    width: 80%;
+  }
+  .btn-perfil {
+    width: 30%;
+  }
+}

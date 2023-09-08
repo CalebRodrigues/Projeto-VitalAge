@@ -22,7 +22,39 @@ firebase.auth().onAuthStateChanged(function(user) {
             var timestamp = batimentoData.timestamp;
 
             var listItem = document.createElement("li");
-            listItem.textContent = "Batimento: " + batimento + ", Data: " + formatDate(timestamp);
+
+            // Criar a imagem de coração
+            var heartIcon = document.createElement("div");
+            heartIcon.className = "heart-icon";
+            var img = document.createElement("img");
+            img.src = "./img/coracao-registros.png"; // Substitua pelo caminho da imagem do coração
+            img.alt = "Coração";
+            heartIcon.appendChild(img);
+
+            // Criar informações de batimento
+            var heartRateInfo = document.createElement("div");
+            heartRateInfo.className = "heart-rate-info";
+
+            // Criar elemento para exibir apenas o número do batimento
+            var batimentoElement = document.createElement("span");
+            batimentoElement.className = "batimento";
+            batimentoElement.textContent = batimento;
+
+            // Criar o botão "Ver Gráfico"
+            var verGraficoButton = document.createElement("button");
+            verGraficoButton.className = "view-button";
+            verGraficoButton.textContent = "Ver mais";
+            verGraficoButton.addEventListener("click", function() {
+                // Aqui você pode redirecionar para a página de gráfico com os dados relevantes
+                // por exemplo, você pode usar o timestamp ou o batimento selecionado
+            });
+
+            // Adicionar os elementos à lista
+            heartRateInfo.appendChild(batimentoElement);
+            listItem.appendChild(heartIcon);
+            listItem.appendChild(heartRateInfo);
+            listItem.appendChild(verGraficoButton);
+
             var_list.appendChild(listItem);
         });
 
@@ -57,7 +89,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 function formatDate(timestamp) {
-    var date = new Date(timestamp * 1000);
-    var options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+    var date = new Date(timestamp);
+    var options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
     return date.toLocaleDateString('pt-BR', options);
 }
