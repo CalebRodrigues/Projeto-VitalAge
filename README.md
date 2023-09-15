@@ -20,19 +20,7 @@ O ESP32 é o hardware central do projeto, equipado com um sensor de batimentos c
 ### 4. Firebase
 O Firebase é a plataforma de armazenamento de dados em nuvem usada para manter os registros dos batimentos cardíacos coletados. Ele oferece segurança, escalabilidade e facilidade de integração com o site e o aplicativo móvel.
 
-## Como Usar o Projeto
-
-Para começar a usar este projeto, siga as instruções no README do aplicativo móvel e do site em seus respectivos diretórios. Você precisará configurar o Firebase para armazenar seus próprios dados de batimentos cardíacos e ajustar as configurações conforme necessário.
-
-## Contribuições
-
-Contribuições são bem-vindas! Se você deseja contribuir para o desenvolvimento deste projeto, siga as diretrizes de contribuição no arquivo CONTRIBUTING.md.
-
-## Licença
-
-Este projeto está licenciado sob a Licença MIT. Consulte o arquivo LICENSE para obter mais informações.
-
 ## Contato
 
-Para obter mais informações ou esclarecimentos sobre o projeto, entre em contato com [seu nome e endereço de e-mail].
+Para obter mais informações ou esclarecimentos sobre o projeto, entre em contato por este email: "c4l3b23@gmail.com".
 
