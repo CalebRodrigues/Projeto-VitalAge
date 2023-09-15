@@ -40,20 +40,16 @@ firebase.auth().onAuthStateChanged(function(user) {
             batimentoElement.className = "batimento";
             batimentoElement.textContent = batimento;
 
-            // Criar o botão "Ver Gráfico"
-            var verGraficoButton = document.createElement("button");
-            verGraficoButton.className = "view-button";
-            verGraficoButton.textContent = "Ver mais";
-            verGraficoButton.addEventListener("click", function() {
-                // Aqui você pode redirecionar para a página de gráfico com os dados relevantes
-                // por exemplo, você pode usar o timestamp ou o batimento selecionado
-            });
-
+            // Criar elemento para exibir a data e hora
+            var timeElement = document.createElement("p");
+            timeElement.className = "time";
+            timeElement.textContent = formatDate(timestamp);
+           
             // Adicionar os elementos à lista
             heartRateInfo.appendChild(batimentoElement);
+            heartRateInfo.appendChild(timeElement);
             listItem.appendChild(heartIcon);
             listItem.appendChild(heartRateInfo);
-            listItem.appendChild(verGraficoButton);
 
             var_list.appendChild(listItem);
         });
@@ -90,6 +86,9 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 function formatDate(timestamp) {
     var date = new Date(timestamp);
-    var options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-    return date.toLocaleDateString('pt-BR', options);
+    var day = date.getDate().toString().padStart(2, '0');
+    var month = (date.getMonth() + 1).toString().padStart(2, '0'); // Note: Months are 0-based, so we add 1
+    var year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
 }
