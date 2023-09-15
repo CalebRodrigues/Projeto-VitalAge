@@ -1,10 +1,10 @@
 # Vital Age
 
-Este repositório contém o código-fonte e a documentação para um projeto de Trabalho de Conclusão de Curso (TCC) que consiste em um site e um aplicativo móvel para monitorar os batimentos cardíacos. O projeto utiliza um ESP32 com um sensor de batimentos cardíacos para coletar dados em tempo real e os envia para um banco de dados hospedado no Firebase.
+Este repositório contém o código-fonte do site de um projeto de Trabalho de Conclusão de Curso (TCC) que consiste em um site e um aplicativo móvel para monitorar os batimentos cardíacos. O projeto utiliza um ESP32 com um sensor de batimentos cardíacos para coletar dados em tempo real e os envia para um banco de dados hospedado no Firebase.
 
 ## Visão Geral do Projeto
 
-O objetivo principal deste projeto é criar uma solução de monitoramento de batimentos cardíacos acessível e eficaz. O ESP32 é usado como o dispositivo de coleta de dados, e os dados coletados são armazenados no Firebase, permitindo o acesso a partir do site e do aplicativo móvel.
+O objetivo principal deste projeto é criar uma solução de monitoramento de batimentos cardíacos. O ESP32 é usado como o dispositivo de coleta de dados, e os dados coletados são armazenados no Firebase, permitindo o acesso a partir do site e do aplicativo móvel.
 
 ## Componentes do Projeto
 
