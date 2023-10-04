@@ -243,7 +243,6 @@ p#user-greeting {
   box-shadow: 0.2px 0.2px 1.5px 1.5px #0d46af;
 }
 
-
 #heart-rate-list::-webkit-scrollbar {
   width: 5px;               /* Largura da barra de rolagem */
 }
