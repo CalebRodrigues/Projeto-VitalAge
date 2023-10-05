@@ -4,9 +4,7 @@ body{
     background-color: #222222;
     color: white;
     font-family: 'Kanit', sans-serif;
-    
     margin: 0 auto;
-    
 }
 
 header{
@@ -81,6 +79,7 @@ main{
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
+    margin-top: -10px;
 }
 
 .content{
@@ -111,7 +110,7 @@ main{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 50px
+    margin-top: 40px
 }
 
 .box-team > h1 {
@@ -172,14 +171,14 @@ main{
 @media screen and (max-width: 915px){
 
     body{
-       padding: 5;
-       overflow-y: scroll;
+        max-width: 1200px;
+        padding: 5;
     }
 
     header{
-        
         align-items: center;
         flex-direction: row-reverse;
+        padding: 0;
     }
 
     #title > h1{
@@ -228,4 +227,35 @@ main{
         display: block;
     }
 
+    .content{
+        flex-direction: column;
+    }
+    
+    .content > img{
+        width: 100%;
+    }
+
+    .text > h1{
+        font-size: 30px;
+        font-weight: 600;
+    }
+
+    .content-team{
+        flex-direction: column;
+    }
+
+    .card-team{
+        width: 80%;
+        height: 400px;
+        margin-top: -40px;
+        margin-bottom: 100px;
+    }
+
+    .box-team > h1{
+        font-size: 36px;
+    }
+    
+    #reverse-elements{
+        flex-direction: column-reverse;
+    }
 }
