@@ -27,7 +27,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             var heartIcon = document.createElement("div");
             heartIcon.className = "heart-icon";
             var img = document.createElement("img");
-            img.src = "./img/coracao-registros.png"; // Substitua pelo caminho da imagem do coração
+            img.src = "./img/coracao-registros.png";
             img.alt = "Coração";
             heartIcon.appendChild(img);
 

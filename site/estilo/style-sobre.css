@@ -5,6 +5,7 @@ body{
     color: white;
     font-family: 'Kanit', sans-serif;
     margin: 0 auto;
+    max-width: 1600px;
 }
 
 header{
@@ -12,8 +13,7 @@ header{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 80px;
-    
+    padding: 2% 8%;
 }
 
 #title{
@@ -153,12 +153,7 @@ main{
 
 ::-webkit-scrollbar-thumb {
 	border-radius: 10px;
-	background-image: -webkit-gradient(linear,
-									   left bottom,
-									   left top,
-									   color-stop(0.44, rgb(122,153,217)),
-									   color-stop(0.72, rgb(64, 111, 168)),
-									   color-stop(0.86, rgb(28,58,148)));
+	background-color: #0d46afc9;
 }
 
 ::-webkit-scrollbar-track {
