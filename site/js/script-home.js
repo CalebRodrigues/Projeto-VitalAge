@@ -36,7 +36,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             snapshot.forEach(function(childSnapshot) {
                 var batimentoData = childSnapshot.val();
                 data.push(batimentoData.bpm);
-                labels.push(formatDate(batimentoData.timestamp));
+                labels.push(formatDate(batimentoData.data));
 
                 // Adiciona cada batimento ao array
                 batimentosArray.push(batimentoData.bpm);
@@ -134,12 +134,13 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 // Função para formatar a data a partir de um timestamp
-function formatDate(timestamp) {
-    var date = new Date(timestamp * 1000);
-    var day = date.getDate().toString().padStart(2, '0');
-    var month = (date.getMonth() + 1).toString().padStart(2, '0');
-
-    return day + '/' + month;
+function formatDate(data) {
+    // Dividir a data em partes com base nas barras "/"
+    var partesDaData = data.split('/');
+    // Extrair o dia e o mês
+    var dia = partesDaData[0];
+    var mes = partesDaData[1];
+    return `${dia}/${mes}`;
 }
 
 // Função para definir a cor com base na média dos batimentos cardíacos

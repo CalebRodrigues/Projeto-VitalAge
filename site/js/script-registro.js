@@ -19,7 +19,8 @@ firebase.auth().onAuthStateChanged(function(user) {
         batimentosRef.on('child_added', function(snapshot) {
             var batimentoData = snapshot.val();
             var batimento = batimentoData.bpm;
-            var timestamp = batimentoData.timestamp;
+            var hora = batimentoData.data;
+            var data = batimentoData.hora;
 
             var listItem = document.createElement("li");
 
@@ -43,7 +44,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             // Criar elemento para exibir a data e hora
             var timeElement = document.createElement("p");
             timeElement.className = "time";
-            timeElement.textContent = formatDate(timestamp);
+            timeElement.textContent = formatDate(hora, data);
            
             // Adicionar os elementos à lista
             heartRateInfo.appendChild(batimentoElement);
@@ -84,11 +85,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
-function formatDate(timestamp) {
-    var date = new Date(timestamp);
-    var day = date.getDate().toString().padStart(2, '0');
-    var month = (date.getMonth() + 1).toString().padStart(2, '0'); // Note: Months are 0-based, so we add 1
-    var year = date.getFullYear();
-
-    return `${day}/${month}/${year}`;
+function formatDate(hora, data) {
+    var data_hora = `${hora} ${data}`;
+    return data_hora;
 }

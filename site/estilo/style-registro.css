@@ -215,8 +215,8 @@ p#user-greeting {
 }
 
 .heart-rate-info > span{
-  margin-top: 13%;
-  margin-bottom: 30%;
+  margin-top: 15%;
+  margin-bottom: 22%;
 }
 
 
@@ -310,6 +310,10 @@ p#user-greeting {
   }
   .card-registro > h1 {
     font-size: 35px;
+  }
+  .heart-rate-info > span{
+    margin-top: 15%;
+    margin-bottom: 24%;
   }
   #heart-rate-list {
     width: 100%;
