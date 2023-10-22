@@ -336,3 +336,10 @@ p#user-greeting {
     width: 30%;
   }
 }
+
+@media only screen and (min-width: 1800px){
+  .heart-rate-info > span{
+    margin-top: 15%;
+    margin-bottom: 28%;
+  }
+}
