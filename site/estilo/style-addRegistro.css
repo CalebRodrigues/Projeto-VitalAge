@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #11143d;
+    font-family: 'Kanit', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: whitesmoke;
+}
+
+.card{
+    height: 70%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    background-color: #1c1a4b;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px #0000005b;
+}
+
+#form-bpm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    padding: 16px;
+    border-radius: 12px;
+    margin-top: 40px;
+}
+
+.card-img > input{
+    width: 60%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background: #28265c;
+    color: #dbdbdb;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.288);
+    outline: none;
+    box-sizing: border-box;
+    margin-top: 5%;
+}
+
+.card-img > img{
+    width: 35%;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+button{
+    padding: 16px;
+    margin: 25px;
+    width: 30%;
+    border: 2px solid #0d46af;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: transparent;
+    color: white;
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+button:hover {
+    background-color: #0d46af;
+    color: rgb(219, 219, 219);
+    cursor: pointer;
+}
+
+.card-img > input::placeholder{
+    color: rgb(202, 202, 202);
+}
+
+@media only screen and (max-width: 320px) {
+    .card-img > input{
+        width: 150px;
+    }
+    .card{
+        width: 90%;
+        height: 85%;
+    }
+    .card-img{
+        margin-top: 10px;
+    }
+    .card-img > img{
+        width: 80%;
+    }
+    button{
+        width: 50%;
+    }
+  }
+  
+  @media only screen and (max-width: 600px) and (min-width: 321px) {
+    .card-img > input{
+        width: 150px;
+    }
+    .card{
+        width: 90%;
+        height: 85%;
+    }
+    .card-img{
+        margin-top: 10px;
+    }
+    .card-img > img{
+        width: 85%;
+    }
+    button{
+        width: 50%;
+    }
+  }
+  
+  @media only screen and (max-width: 820px) and (min-width: 601px) {
+
+  }

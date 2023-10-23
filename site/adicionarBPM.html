@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./estilo/style-addRegistro.css">
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
+    <title>Adicionar BPM</title>
 </head>
 <body>
-    <h1>Adicionar Batimento Cardíaco</h1>
-    <form id="form-bpm">
-        <input type="number" id="bpm" placeholder="BPM" required>
-        <button type="submit">Adicionar BPM</button>
-    </form>
+    <div class="card">
+        <h1>Adicionar BPM</h1>
+        <form id="form-bpm">
+            <div class="card-img">
+                <img src="./img/pulseira.png" alt="">
+                <input type="number" id="bpm" placeholder="Insira aqui" required>
+            </div>
+            <button type="submit">Adicionar</button>
+        </form>
+    </div>
 
     <!-- Importando as bibliotecas do Firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
