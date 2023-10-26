@@ -175,7 +175,6 @@ p#user-greeting {
   padding: 5px;
 }
 
-
 #heart-rate-list li {
   display: flex;
   justify-content: space-between;
@@ -190,12 +189,6 @@ p#user-greeting {
   font-size: 20px;
   font-weight: 500;
   position: relative;
-}
-
-#heart-rate-list li .heart-icon {
-  width: 64px;
-  height: 64px;
-  margin-right: 10px;
 }
 
 #heart-rate-list li .bpm {
@@ -292,37 +285,111 @@ p#user-greeting {
   border: none;              /* Cria espaço em torno do polegar da barra de rolagem */
 }
 
+.heart-bpm-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 16%;
+}
+
+.calendar-date-container{
+  width: 32%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+.clock-time-container{
+  width: 22%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
 @media only screen and (max-width: 320px) {
   .registro {
     margin-top: 20px;
   }
   .card-registro {
     width: 90%;
-    height: 400px;
     height: 85%;
     padding: 0;
   }
   .card-registro > h1 {
     margin-top: 10px;
-    margin-bottom: 0px;
+    margin-bottom: -30px;
+    font-size: 28px; /* Reduzir o tamanho da fonte */
   }
   .header-right {
     display: none;
   }
   .card-registro > h1 {
-    font-size: 35px;
+    font-size: 28px; /* Reduzir o tamanho da fonte */
   }
   #heart-rate-list {
     width: 100%;
-    max-height: 90%; /* Defina a altura máxima desejada para a lista */
+    max-height: 90%;
     padding: 5px;
+    overflow-y: auto; /* Adicionar barra de rolagem vertical */
+    overflow-x: hidden; /* Impede a rolagem horizontal */
   }
   #heart-rate-list::-webkit-scrollbar {
-    width: 0px;               /* width of the entire scrollbar */
+    width: 0; /* Oculta a barra de rolagem horizontal */
+  }
+  #heart-rate-list li {
+    width: 100%;
+    display: flex;
+    
+    flex-direction: column; /* Empilhar elementos verticalmente */
+    align-items: center; /* Alinha verticalmente os elementos */
+  }
+  #heart-rate-list li .bpm {
+    font-size: 22px; /* Reduzir o tamanho da fonte */
+    margin: 5px 0; /* Adicionar espaço entre o ícone do coração e o BPM */
+    display: flex;
+    justify-content: center;
+    flex-direction: column; /* Empilhar elementos verticalmente */
+    align-items: center; /* Alinha verticalmente os elementos */
+  }
+  #heart-rate-list li .date {
+    font-size: 20px; /* Reduzir o tamanho da fonte */
+    margin: 5px 0; /* Adicionar espaço entre o calendário e a data */
+  }
+  #heart-rate-list li .time {
+    font-size: 20px; /* Reduzir o tamanho da fonte */
+  }
+  #heart-rate-list li .delete-icon {
+    margin-top: 12px; 
+  }
+  .heart-bpm-container {
+    margin: 0;
+    width: 100%;
+    justify-content: start;
+  }
+  
+  .calendar-date-container{
+    margin: 0;
+    width: 100%;
+    justify-content: start;
+  }
+  
+  .clock-time-container{
+    margin: 0;
+    width: 95%;
+    justify-content: start;
   }
 
-  #heart-rate-list li {
-    width: 100%; 
+  .clock-time-container img{
+    margin-right: 34px;
+  }
+  .calendar-date-container img{
+    margin-right: 20px;
+  }
+  .heart-bpm-container img{
+    margin-right: 20px;
   }
 }
 
@@ -331,49 +398,83 @@ p#user-greeting {
     margin-top: 20px;
   }
   .card-registro {
-    width: 95%;
-    height: 400px;
-    height: 80%;
+    width: 90%;
+    height: 85%;
     padding: 0;
   }
   .card-registro > h1 {
-    margin-top: 22%;
-    margin-bottom: 0px;
+    margin-top: 10px;
+    margin-bottom: -30px;
+    font-size: 28px; /* Reduzir o tamanho da fonte */
   }
   .header-right {
     display: none;
   }
   .card-registro > h1 {
-    font-size: 35px;
-  }
-  .heart-rate-info > span{
-    margin-top: 15%;
-    margin-bottom: 24%;
+    font-size: 28px; /* Reduzir o tamanho da fonte */
   }
   #heart-rate-list {
     width: 100%;
-    max-height: 90%; /* Defina a altura máxima desejada para a lista */
-    padding: 8px;
+    max-height: 90%;
+    padding: 5px;
+    overflow-y: auto; /* Adicionar barra de rolagem vertical */
+    overflow-x: hidden; /* Impede a rolagem horizontal */
   }
   #heart-rate-list::-webkit-scrollbar {
-    width: 0px;               /* width of the entire scrollbar */
+    width: 0; /* Oculta a barra de rolagem horizontal */
   }
   #heart-rate-list li {
-    width: 100%; 
+    width: 100%;
+    display: flex;
+    
+    flex-direction: column; /* Empilhar elementos verticalmente */
+    align-items: center; /* Alinha verticalmente os elementos */
   }
-
   #heart-rate-list li .bpm {
-    font-size: 24px;
+    font-size: 22px; /* Reduzir o tamanho da fonte */
+    margin: 5px 0; /* Adicionar espaço entre o ícone do coração e o BPM */
+    display: flex;
+    justify-content: center;
+    flex-direction: column; /* Empilhar elementos verticalmente */
+    align-items: center; /* Alinha verticalmente os elementos */
   }
-  
   #heart-rate-list li .date {
-    font-size: 20px;
+    font-size: 20px; /* Reduzir o tamanho da fonte */
+    margin: 5px 0; /* Adicionar espaço entre o calendário e a data */
+  }
+  #heart-rate-list li .time {
+    font-size: 20px; /* Reduzir o tamanho da fonte */
+  }
+  #heart-rate-list li .delete-icon {
+    margin-top: 12px; 
+  }
+  .heart-bpm-container {
+    margin: 0;
+    width: 100%;
+    justify-content: start;
   }
   
-  #heart-rate-list li .time {
-    font-size: 20px;
+  .calendar-date-container{
+    margin: 0;
+    width: 100%;
+    justify-content: start;
+  }
+  
+  .clock-time-container{
+    margin: 0;
+    width: 95%;
+    justify-content: start;
   }
 
+  .clock-time-container img{
+    margin-right: 34px;
+  }
+  .calendar-date-container img{
+    margin-right: 20px;
+  }
+  .heart-bpm-container img{
+    margin-right: 20px;
+  }
 }
 
 @media only screen and (max-width: 800px) and (min-width: 601px) {
@@ -388,9 +489,9 @@ p#user-greeting {
   }
 }
 
-@media only screen and (max-width: 1280px) and (min-width: 1000px) {
+@media only screen and (max-width: 1366px) and (min-width: 1000px) {
   .card-registro {
-    width: 70%;
+    width: 62%;
   }
 }
 
@@ -402,5 +503,14 @@ p#user-greeting {
   .card-registro{
     width: 50%;
     height: 70%;
+  }
+  #heart-rate-list li .bpm {
+    font-size: 32px; /* Reduzir o tamanho da fonte */
+  }  
+  #heart-rate-list li .date {
+    font-size: 28px; 
+  }
+  #heart-rate-list li .time {
+    font-size: 28px; 
   }
 }

@@ -95,14 +95,15 @@ button:hover {
 
 @media only screen and (max-width: 320px) {
     .card-img > input{
-        width: 150px;
+        width: 300px;
+        margin-top: 50px;
     }
     .card{
         width: 90%;
         height: 85%;
     }
     .card-img{
-        margin-top: 10px;
+        flex-direction: column;
     }
     .card-img > img{
         width: 80%;
@@ -114,17 +115,18 @@ button:hover {
   
   @media only screen and (max-width: 600px) and (min-width: 321px) {
     .card-img > input{
-        width: 150px;
+        margin-top: 50px;
+        width: 300px;
     }
     .card{
         width: 90%;
         height: 85%;
     }
     .card-img{
-        margin-top: 10px;
+        flex-direction: column;
     }
     .card-img > img{
-        width: 85%;
+        width: 80%;
     }
     button{
         width: 50%;
